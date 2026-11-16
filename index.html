@@ -691,10 +691,20 @@ p{margin:0 0 14px;max-width:74ch}
 .to-noir .nav li:nth-child(2) .dot{animation-name:strike-a;animation-duration:.52s;animation-delay:.7s}
 .to-noir .nav li:nth-child(3) .dot{animation-name:strike-c;animation-duration:.86s;animation-delay:.46s}
 .to-noir .nav li:nth-child(4) .dot{animation-name:strike-b;animation-duration:.6s;animation-delay:.84s}
+.to-noir .nav li:nth-child(5) .dot{animation-name:strike-c;animation-duration:.72s;animation-delay:.64s}
 
 .to-noir .eyebrow::before{animation-name:strike-c;animation-duration:.68s;animation-delay:.6s}
 .to-noir .block:nth-of-type(2) .eyebrow::before{animation-name:strike-a;animation-duration:.58s;animation-delay:.88s}
 .to-noir .block:nth-of-type(3) .eyebrow::before{animation-name:strike-b;animation-duration:.8s;animation-delay:.5s}
+.to-noir .block:nth-of-type(4) .eyebrow::before{animation-name:strike-a;animation-duration:.66s;animation-delay:.76s}
+/* interests: one small lamp per theme, lit in the dark, struck in sequence */
+[data-theme="noir"] .themes h3::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:var(--accent);box-shadow:var(--glow) var(--accent);margin:0 .7em .18em 0;vertical-align:middle}
+[data-theme="noir"] .themes .q{border-left-color:rgba(var(--accent-rgb),.28)}
+.to-noir .themes h3::before{animation-timing-function:steps(1,end);animation-iteration-count:1;animation-fill-mode:both}
+.to-noir .themes li:nth-child(1) h3::before{animation-name:strike-b;animation-duration:.7s;animation-delay:.92s}
+.to-noir .themes li:nth-child(2) h3::before{animation-name:strike-c;animation-duration:.5s;animation-delay:1.06s}
+.to-noir .themes li:nth-child(3) h3::before{animation-name:strike-a;animation-duration:.62s;animation-delay:1.2s}
 
 .to-noir .toggle__knob{animation-name:strike-a;animation-duration:.46s;animation-delay:.46s}
 
@@ -1024,7 +1034,7 @@ p{margin:0 0 14px;max-width:74ch}
       emph.appendChild(s);
       letters.push(s);
     }
-    for(var k = 0; k < 2 && letters.length; k++){
+    for(var k = 0; k < (letters.length >= 10 ? 2 : 1) && letters.length; k++){
       var pickWeak = letters[Math.floor(Math.random() * letters.length)];
       if(weak.indexOf(pickWeak) === -1) weak.push(pickWeak);
     }
@@ -1084,7 +1094,7 @@ p{margin:0 0 14px;max-width:74ch}
   if(!calm.matches){
     var elems = [].slice.call(document.querySelectorAll('.chip, .dot'));
     /* rails and eyebrow marks are ::before pseudo-elements — only the lamp flickers, not the line */
-    var rails = [].slice.call(document.querySelectorAll('.pub, .eyebrow'));
+    var rails = [].slice.call(document.querySelectorAll('.pub, .eyebrow, .themes h3'));
     var eCls = ['f-a','f-b','f-c'];
     var rCls = ['r-a','r-b','r-c'];
 
@@ -1100,8 +1110,8 @@ p{margin:0 0 14px;max-width:74ch}
         var idle = root.getAttribute('data-theme') === 'noir' && !document.hidden && !settling;
         if(idle){
           var roll = Math.random();
-          if(roll < 0.42 && letters.length){
-            var count = Math.random() < 0.35 ? 2 : 1;
+          if(roll < (letters.length >= 10 ? 0.42 : 0.24) && letters.length){
+            var count = (letters.length >= 10 && Math.random() < 0.35) ? 2 : 1;
             for(var n = 0; n < count; n++){
               var src = (weak.length && Math.random() < 0.65) ? weak : letters;
               blip(pick(src), pick(eCls));
