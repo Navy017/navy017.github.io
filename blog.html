@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="victorian">
+<html lang="en" data-theme="noir" class="obs">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,14 +22,14 @@
 <!-- runs before first paint so a returning noir reader never sees a flash of cream -->
 <script>
 (function(){try{
-  var t=localStorage.getItem('theme');if(t==='noir'||t==='victorian')document.documentElement.setAttribute('data-theme',t);
+  document.documentElement.setAttribute('data-theme','noir');
   var b=localStorage.getItem('blinds');document.documentElement.setAttribute('data-blinds',b==='closed'?'closed':'open');
 }catch(e){}})();
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,400;0,500;1,400&family=Italianno&family=Petit+Formal+Script&family=Allura&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,400;0,500;1,400&family=Italianno&family=Petit+Formal+Script&family=Allura&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -764,6 +764,62 @@ p{margin:0 0 14px;max-width:74ch}
     transition-duration:.001ms!important;
   }
 }
+
+/* ================= OBSERVATORY — the blog's own theme =================
+   light ("victorian" key) = cyanotype · dark ("noir" key) = night star chart */
+
+.obs[data-theme="noir"]{
+  --bg:#0F1B33; --ink:#EDE6D6; --ink-soft:#D6CDB9; --muted:#8E97A8;
+  --rule:#22314F; --rule-strong:#34466B;
+  --accent:#C9A227; --accent-2:#C9A227; --accent-3:#8E97A8; --accent-ink:#0F1B33; --accent-rgb:201,162,39;
+  --display:"Cormorant Garamond",Georgia,serif; --body:"EB Garamond",Georgia,serif;
+  --util:"IBM Plex Mono",ui-monospace,monospace; --script:"Cormorant Garamond",Georgia,serif;
+  --body-size:18px; --util-track:.14em; --glow:0 0 10px; --hair:1px; --mark:"✦";
+  --tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg fill='%23EDE6D6'%3E%3Ccircle cx='17' cy='31' r='.8'/%3E%3Ccircle cx='96' cy='12' r='.5'/%3E%3Ccircle cx='151' cy='64' r='1.1'/%3E%3Ccircle cx='211' cy='27' r='.6'/%3E%3Ccircle cx='42' cy='118' r='.5'/%3E%3Ccircle cx='128' cy='141' r='.7'/%3E%3Ccircle cx='199' cy='170' r='.9'/%3E%3Ccircle cx='71' cy='196' r='.6'/%3E%3Ccircle cx='163' cy='222' r='.5'/%3E%3Ccircle cx='8' cy='219' r='.7'/%3E%3Ccircle cx='230' cy='112' r='.5'/%3E%3C/g%3E%3C/svg%3E"); --tex-size:240px 240px; --tex-op:0; --tex-blend:normal;
+  --head-bg:#0B1528; --head-ink:#EDE6D6; --head-muted:#8E97A8; --head-accent:#C9A227;
+  --head-rule:#22314F; --head-track:#0F1B33; --head-tex-op:0;
+}
+.obs .blinds,.obs .cord,.obs body::after{display:none}
+.obs .masthead__name,.obs[data-theme] .masthead__name{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500;font-size:1.65rem;line-height:1.05;letter-spacing:.01em;text-transform:none}
+.obs h2{font-family:var(--display);font-weight:500;font-size:2.1rem;letter-spacing:.005em}
+.obs .post h3{font-family:var(--display);font-weight:600;font-size:1.55rem;margin:0 0 4px}
+.obs .post__date{font-family:var(--util);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.obs .post__date::before{content:"✦ ";}
+.obs .post + .post{border-top:1px solid var(--rule-strong)}
+.obs .lede{font-style:italic}
+/* constellation: tags as stars on a faint dashed line */
+.obs .tagbar,.obs .post__tags{position:relative;gap:18px}
+.obs .tagbar::before,.obs .post__tags::before{content:"";position:absolute;left:6px;right:6px;top:50%;border-top:1px dashed var(--rule-strong);z-index:0}
+.obs .tag{position:relative;z-index:1;background:var(--bg);border:none;padding:2px 6px;font-family:var(--util);font-size:.68rem;letter-spacing:.12em;color:var(--ink-soft)}
+.obs .tag::before{content:"✦";margin-right:6px;color:var(--accent);text-shadow:var(--glow) rgba(var(--accent-rgb),.6)}
+.obs .tag[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.obs .tag[aria-pressed="true"]::before{color:var(--accent-ink)}
+
+/* ---- all-in night sky ---- */
+.obs .toggle{display:none}
+.obs body{background:#0B1428}
+.obs .sky{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(1100px 650px at 85% -8%, rgba(70,104,170,.28), transparent 62%),
+    radial-gradient(900px 700px at -10% 108%, rgba(201,162,39,.07), transparent 60%),
+    linear-gradient(118deg, transparent 22%, rgba(170,184,220,.035) 38%, rgba(190,200,230,.075) 47%, rgba(170,184,220,.035) 56%, transparent 72%),
+    linear-gradient(180deg,#081022 0%,#0D1830 48%,#12203D 100%);}
+.obs .sky::before{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='%23DCE4F2'%3E%3Ccircle cx='58' cy='27' r='0.58' opacity='0.40'/%3E%3Ccircle cx='96' cy='66' r='0.37' opacity='0.68'/%3E%3Ccircle cx='7' cy='78' r='0.37' opacity='0.41'/%3E%3Ccircle cx='76' cy='149' r='0.39' opacity='0.50'/%3E%3Ccircle cx='113' cy='171' r='0.55' opacity='0.61'/%3E%3Ccircle cx='176' cy='8' r='0.65' opacity='0.54'/%3E%3Ccircle cx='26' cy='21' r='0.46' opacity='0.88'/%3E%3Ccircle cx='33' cy='105' r='0.57' opacity='0.59'/%3E%3Ccircle cx='99' cy='11' r='0.37' opacity='0.48'/%3E%3Ccircle cx='122' cy='77' r='0.46' opacity='0.73'/%3E%3Ccircle cx='82' cy='54' r='0.63' opacity='0.80'/%3E%3Ccircle cx='44' cy='103' r='0.53' opacity='0.92'/%3E%3Ccircle cx='131' cy='52' r='0.69' opacity='0.43'/%3E%3Ccircle cx='75' cy='136' r='0.40' opacity='0.67'/%3E%3Ccircle cx='7' cy='120' r='0.62' opacity='0.72'/%3E%3Ccircle cx='158' cy='56' r='0.59' opacity='0.74'/%3E%3Ccircle cx='104' cy='82' r='0.64' opacity='0.96'/%3E%3Ccircle cx='85' cy='120' r='0.37' opacity='0.81'/%3E%3Ccircle cx='116' cy='179' r='0.64' opacity='0.53'/%3E%3Ccircle cx='69' cy='120' r='0.36' opacity='0.65'/%3E%3Ccircle cx='30' cy='21' r='0.37' opacity='0.85'/%3E%3Ccircle cx='23' cy='45' r='0.49' opacity='0.92'/%3E%3Ccircle cx='15' cy='81' r='0.54' opacity='0.92'/%3E%3Ccircle cx='147' cy='156' r='0.45' opacity='0.62'/%3E%3Ccircle cx='65' cy='159' r='0.69' opacity='0.45'/%3E%3Ccircle cx='32' cy='42' r='0.43' opacity='0.67'/%3E%3C/g%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cg fill='%23EDE6D6'%3E%3Ccircle cx='247' cy='110' r='0.70' opacity='0.62'/%3E%3Ccircle cx='155' cy='238' r='1.13' opacity='0.80'/%3E%3Ccircle cx='217' cy='259' r='1.00' opacity='0.39'/%3E%3Ccircle cx='378' cy='328' r='1.09' opacity='0.87'/%3E%3Ccircle cx='165' cy='168' r='0.75' opacity='0.76'/%3E%3Ccircle cx='26' cy='28' r='0.79' opacity='0.46'/%3E%3Ccircle cx='143' cy='22' r='0.70' opacity='0.45'/%3E%3Ccircle cx='43' cy='153' r='0.71' opacity='0.92'/%3E%3Ccircle cx='258' cy='62' r='0.81' opacity='0.58'/%3E%3Ccircle cx='153' cy='52' r='1.08' opacity='1.00'/%3E%3Ccircle cx='196' cy='203' r='0.74' opacity='0.42'/%3E%3Ccircle cx='144' cy='111' r='1.07' opacity='0.45'/%3E%3Ccircle cx='10' cy='399' r='0.94' opacity='0.45'/%3E%3Ccircle cx='228' cy='11' r='0.94' opacity='0.99'/%3E%3C/g%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cg fill='%23F6E7B8'%3E%3Ccircle cx='777' cy='627' r='1.23' opacity='0.59'/%3E%3Ccircle cx='150' cy='695' r='1.37' opacity='0.86'/%3E%3Ccircle cx='297' cy='201' r='1.51' opacity='0.99'/%3E%3Ccircle cx='767' cy='725' r='1.51' opacity='0.83'/%3E%3Ccircle cx='204' cy='466' r='1.28' opacity='0.37'/%3E%3Ccircle cx='25' cy='251' r='1.23' opacity='0.80'/%3E%3Ccircle cx='861' cy='403' r='1.57' opacity='0.99'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:180px 180px,420px 420px,900px 900px;opacity:.6}
+.obs .sky::after{content:"";position:absolute;width:760px;height:760px;right:-240px;top:-150px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='760' viewBox='0 0 760 760'%3E%3Cg fill='none' stroke='%23C9A227' stroke-width='1'%3E%3Ccircle cx='380' cy='380' r='370'/%3E%3Ccircle cx='380' cy='380' r='290' stroke-dasharray='2 6'/%3E%3Ccircle cx='380' cy='380' r='200'/%3E%3Ccircle cx='380' cy='380' r='110' stroke-dasharray='2 6'/%3E%3Cpath d='M380 10V750M10 380H750M118 118L642 642M642 118L118 642' stroke-dasharray='1 7'/%3E%3Cpath d='M250 210L318 262L402 248L468 300L452 382M402 248L420 170' stroke-width='1.2'/%3E%3C/g%3E%3Cg fill='%23F6E7B8'%3E%3Ccircle cx='250' cy='210' r='3'/%3E%3Ccircle cx='318' cy='262' r='2.2'/%3E%3Ccircle cx='402' cy='248' r='3.4'/%3E%3Ccircle cx='468' cy='300' r='2.4'/%3E%3Ccircle cx='452' cy='382' r='2.8'/%3E%3Ccircle cx='420' cy='170' r='2'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;opacity:.13}
+.obs .twinkle{position:absolute;width:3px;height:3px;border-radius:50%;background:#F6E7B8;
+  box-shadow:0 0 8px 2px rgba(246,231,184,.55);animation:tw 5.5s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+@media (prefers-reduced-motion:reduce){.obs .twinkle{animation:none;opacity:.7}}
+@media (max-width:860px){.obs .sky::after{width:480px;height:480px;right:-200px;top:-90px}}
+.obs .masthead{background:rgba(8,16,34,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.obs .main{position:relative}
+.obs .main::before{content:"";position:absolute;z-index:-1;left:-60px;right:-60px;top:0;bottom:0;background:radial-gradient(60% 50% at 40% 40%,rgba(8,16,34,.55),transparent 75%);pointer-events:none}
+.obs .post{background:linear-gradient(180deg,rgba(15,27,51,.0),rgba(15,27,51,.0))}
+.obs .tag{background:#0D1830}
+.obs h2{text-shadow:0 0 22px rgba(201,162,39,.12)}
 </style>
 </head>
 <body>
@@ -783,6 +839,7 @@ p{margin:0 0 14px;max-width:74ch}
      ============================================================ -->
 
 
+<div class="sky" aria-hidden="true"><span class="twinkle" style="left:12%;top:18%;animation-delay:0.0s"></span><span class="twinkle" style="left:31%;top:64%;animation-delay:1.7s"></span><span class="twinkle" style="left:58%;top:9%;animation-delay:3.1s"></span><span class="twinkle" style="left:77%;top:46%;animation-delay:0.9s"></span><span class="twinkle" style="left:91%;top:78%;animation-delay:2.4s"></span><span class="twinkle" style="left:44%;top:88%;animation-delay:4.2s"></span><span class="twinkle" style="left:6%;top:52%;animation-delay:3.6s"></span></div>
 <div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
 <div class="veil" id="veil" aria-hidden="true"></div>
 <div class="blinds" aria-hidden="true"></div>
@@ -959,7 +1016,7 @@ p{margin:0 0 14px;max-width:74ch}
     if(meta) meta.setAttribute('content', MODES[mode].color);
   }
 
-  apply(restore() || 'victorian');
+  apply('noir');
 
   var settling = null;
   var locked = false;
