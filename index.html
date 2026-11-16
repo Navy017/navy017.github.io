@@ -14,7 +14,7 @@
 
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Navyansh Singh — Undergraduate Researcher">
-<meta property="og:description" content="Undergraduate researcher at IIIT Naya Raipur. What resembles understanding in AI — studied behaviourally and mechanistically.">
+<meta property="og:description" content="Undergraduate researcher at IIIT Naya Raipur. What can't AI do, exactly — and how well can we measure it?">
 <meta property="og:url" content="https://your-github-username.github.io/">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://your-github-username.github.io/">
@@ -473,6 +473,14 @@ p{margin:0 0 14px;max-width:74ch}
 .themes li:first-child{border-top:var(--hair) solid var(--rule)}
 .themes li:hover{padding-left:8px}
 .themes p{margin:0;color:var(--muted);font-size:.94rem}
+.themes p + p{margin-top:8px}
+.themes .q{color:var(--ink-soft);padding-left:14px;border-left:var(--hair) solid var(--rule)}
+.themes .kw{margin-top:10px;font-size:.8rem;letter-spacing:.02em;font-style:italic}
+.more{margin:22px 0 0;font-size:.94rem;color:var(--muted)}
+.post{padding:8px 0 36px}
+.post + .post{border-top:var(--hair) solid var(--rule);padding-top:36px}
+.post__date{font-size:.8rem;color:var(--muted);margin:0 0 6px;letter-spacing:.04em}
+.post p{max-width:68ch;color:var(--ink-soft)}
 
 /* ---------- publications ---------- */
 .pubs{display:grid}
@@ -784,6 +792,14 @@ p{margin:0 0 14px;max-width:74ch}
     "authors": ["Navyansh Singh", "Animesh Pathak", "Aarav Singh"],
     "venue": "arXiv:2609.18644",
     "links": { "arXiv": "https://arxiv.org/abs/2609.18644", "PDF": "https://arxiv.org/pdf/2609.18644" }
+  },
+  {
+    "status": "published",
+    "chip": "Workshop",
+    "title": "Hindsight-Guided Rationale Distillation for Rare Disease Diagnosis",
+    "authors": ["Aarav Singh", "Animesh Pathak", "Navyansh Singh"],
+    "venue": "AACL-IJCNLP 2026 · Student Research Workshop (non-archival)",
+    "links": {}
   }
 ]
 </script>
@@ -806,8 +822,9 @@ p{margin:0 0 14px;max-width:74ch}
       <nav aria-label="Sections">
         <ul class="nav">
           <li><a href="#about"><span class="dot"></span>About</a></li>
-          <li><a href="#research"><span class="dot"></span>Research</a></li>
+          <li><a href="#interests"><span class="dot"></span>Interests</a></li>
           <li><a href="#publications"><span class="dot"></span>Publications</a></li>
+          <li><a href="writing.html"><span class="dot"></span>Writing</a></li>
           <li><a href="#contact"><span class="dot"></span>Contact</a></li>
         </ul>
       </nav>
@@ -826,7 +843,7 @@ p{margin:0 0 14px;max-width:74ch}
     <section class="block" id="about">
       <p class="eyebrow reveal">Data Science &amp; AI · IIIT Naya Raipur</p>
 
-      <h1 class="thesis reveal">What <em>resembles understanding</em> in AI?</h1>
+      <h1 class="thesis reveal">What <em>can't</em> AI do, exactly?</h1>
 
       <p class="lede reveal">
         I'm <strong>Navyansh Singh</strong>, an undergraduate in Data Science &amp; AI at IIIT Naya Raipur.
@@ -841,40 +858,49 @@ p{margin:0 0 14px;max-width:74ch}
       </p>
     </section>
 
-    <section class="block" id="research">
-      <p class="eyebrow">Research</p>
-      <h2>What I work on</h2>
+    <section class="block" id="interests">
+      <p class="eyebrow">Interests</p>
+      <h2>What I'm curious about</h2>
       <p>
-        What I find interesting is which capabilities current models actually possess, especially on tasks
-        that in humans require understanding and reasoning: what exactly the models do in those cases, and
-        where and why they are limited.
-      </p>
-      <p>
-        I go after specific behaviours where a model drifts from what I assumed, or does something I don't
-        have a clean explanation for, and then want the what and the why. I'm also getting into mechanistic
-        interpretability, to check what is happening internally against the behaviour.
+        I'm curious about what it is that these models can and cannot do, in a sense, and just how well we
+        can measure it. I go after specific behaviours where a model drifts from what I assumed, or does
+        something I don't have a clean explanation for, and then want the what and the why. I'm also getting
+        into mechanistic interpretability, to check what is happening inside against the behaviour.
       </p>
 
-      <!-- These are kinds of case, not projects. A new paper goes under
-           Publications; this list changes only if what I'm drawn to does. -->
       <ul class="themes">
         <li>
-          <h3>Open questions about well-documented behaviours.</h3>
-          <p>A behaviour that is definitely there and well documented, but with a specific question about it
-          I can't answer from what's published. Especially where behavioural similarity makes a clean
-          separation difficult.</p>
+          <h3>Questions I keep coming back to.</h3>
+          <p>A few of them, and anything that can help answer them:</p>
+          <p class="q">Is there anything that you can say these models definitely cannot do? Of course these
+          models aren't good at everything, and of course they can do a lot, but if you were to say what it is
+          exactly that they could not do, what would it be?</p>
+          <p class="q">Can AI do well in open-ended scenarios and tasks where the main thing is taste, judgement,
+          direction? Can AI have its own taste?</p>
+          <p class="q">When these models are given control of more and more tasks and tools, and as they grow
+          more capable, what do they end up doing, and how can we understand that?</p>
+          <p>Call it a taste preference, or a prediction, but since AI has made nearly everything cheap, taste
+          is, or is going to be, the biggest difference marker, because AI isn't very good at that yet.</p>
+          <p class="kw">capability limits · open-ended tasks · taste &amp; judgement · agentic behaviour · AI evaluation</p>
         </li>
         <li>
           <h3>Construct validity.</h3>
           <p>What limits current benchmarks in measuring capability, and whether a precise issue is being
           hidden by the way they measure it. Fallacy detection was where I first found one.</p>
+          <p class="kw">construct validity · measurement science · benchmark design · evaluation methodology · fallacy detection</p>
         </li>
         <li>
           <h3>Where, exactly, the "understanding" runs out.</h3>
-          <p>When a model performs a task that needs something at least similar to reasoning or
-          understanding: where does it fail, why, and can that limit be removed.</p>
+          <p>For these models we end up using anthropomorphizing terms, and I believe it is preferable to
+          do so, since to describe what we see in these models, the closest descriptions of those behaviours and
+          ideas come from humans, so the only vocabulary we have is human vocabulary. Yet they probably do not
+          mean the same thing for a model, so I do want to know what they do mean. What does it mean for a model
+          to reason, for example?</p>
+          <p class="kw">reasoning in LLMs · mechanistic interpretability · what models understand · anthropomorphism</p>
         </li>
       </ul>
+
+      <p class="more">I also write down opinions on some of this, separately from the research: <a href="writing.html">Writing &rarr;</a></p>
     </section>
 
     <!-- Rendered from the #papers list at the top of <body>. Don't edit here. -->
