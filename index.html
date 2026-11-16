@@ -481,6 +481,12 @@ p{margin:0 0 14px;max-width:74ch}
 .post + .post{border-top:var(--hair) solid var(--rule);padding-top:36px}
 .post__date{font-size:.8rem;color:var(--muted);margin:0 0 6px;letter-spacing:.04em}
 .post p{max-width:68ch;color:var(--ink-soft)}
+.post__tags{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px}
+.tag{font:inherit;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:none;border:var(--hair) solid currentColor;padding:2px 8px;cursor:pointer}
+.tag[aria-pressed="true"]{background:var(--accent);color:var(--paper,#F3E9DF)}
+.tagbar{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 26px}
+.post[hidden]{display:none}
+
 
 /* ---------- publications ---------- */
 .pubs{display:grid}
@@ -824,7 +830,7 @@ p{margin:0 0 14px;max-width:74ch}
           <li><a href="#about"><span class="dot"></span>About</a></li>
           <li><a href="#interests"><span class="dot"></span>Interests</a></li>
           <li><a href="#publications"><span class="dot"></span>Publications</a></li>
-          <li><a href="writing.html"><span class="dot"></span>Opinions</a></li>
+          <li><a href="blog.html"><span class="dot"></span>Blog</a></li>
           <li><a href="#contact"><span class="dot"></span>Contact</a></li>
         </ul>
       </nav>
@@ -897,7 +903,7 @@ p{margin:0 0 14px;max-width:74ch}
         </li>
       </ul>
 
-      <p class="more">I also write down opinions on some of this, separately from the research: <a href="writing.html">Opinion pieces &rarr;</a></p>
+      <p class="more">I also keep a blog: discussion of ideas in AI, about AI, interesting reads, etc. Call it a rough compilation of ideas in AI I find interesting. <a href="blog.html">Blog &rarr;</a></p>
     </section>
 
     <!-- Rendered from the #papers list at the top of <body>. Don't edit here. -->
